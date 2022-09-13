@@ -1,35 +1,70 @@
 package BismaAlifAlghifariJSleepMN;
-
+import java.util.Scanner;
 
 /**
- * Write a description of class JSleep here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * Bisma Alif Alghifari
+ * 2106731402
+ * Modul 1
  */
+
 public class JSleep
 {
-    // instance variables - replace the example below with your own
-    private int x;
 
-    /**
-     * Constructor for objects of class JSleep
-     */
-    public JSleep()
-    {
-        // initialise instance variables
-        x = 0;
+    public static void main(String[] args){
+        JSleep Hotel = new JSleep();
+        System.out.println("getDiscPercent = " + getDiscountPercentage(1000, 800));
+        System.out.println("getDiscPrice = " + getDiscountedPrice(100000, 20.0f));
+        System.out.println("getOriginalPrice = " + getOriginalPrice(80000, 20.0f));
+        System.out.println("getAdminFee = " + getAdminFee(100000));
+        System.out.println("getTotal = " + getTotalPrice(10000, 2));
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public int getHotelId(){
+        return 0;
     }
+
+    public static String getHotelName(){
+        return "hotel";
+    }
+
+    public static boolean isDiscount(){
+        return true;
+    }
+
+    public static float getDiscountPercentage(int beforeDiscount, int afterDiscount){
+        if (beforeDiscount <= afterDiscount){
+            return 0.0f;
+        } else {
+            return (float) ((float)(beforeDiscount - afterDiscount)/(float)beforeDiscount)*100;
+        }
+    }
+
+    public static int getDiscountedPrice(int price, float discountPercentage){
+        if (discountPercentage >= 100.0f){
+            return 0;
+        } else
+            return (int) (price * ((float)100.0 - discountPercentage)/100);
+    }
+
+    public static int getOriginalPrice(int discountedPrice, float discountPercentage){
+        if (discountPercentage >= 100.0f){
+            return (int) 0;
+        }else
+            return (int) ((float)discountedPrice * (100.0 / (100.0 - discountPercentage)));
+
+    }
+
+    public static float getAdminFeePercentage(){
+        return 0.05f;
+    }
+
+    public static int getAdminFee(int price){
+        return (int)((float)price * 0.05f);
+    }
+
+    public static int getTotalPrice(int price, int numberOfNight){
+        return (price * numberOfNight) + getAdminFee(price * numberOfNight);
+    }
+
 }
+
