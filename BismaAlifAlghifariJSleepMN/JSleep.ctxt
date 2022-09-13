@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.target=JSleep
+comment0.text=\r\n\ Bisma\ Alif\ Alghifari\r\n\ 2106731402\r\n\ Modul\ 1\r\n
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment10.params=price\ numberOfNight
+comment10.target=int\ getTotalPrice(int,\ int)
+comment2.params=
+comment2.target=int\ getHotelId()
+comment3.params=
+comment3.target=java.lang.String\ getHotelName()
+comment4.params=
+comment4.target=boolean\ isDiscount()
+comment5.params=beforeDiscount\ afterDiscount
+comment5.target=float\ getDiscountPercentage(int,\ int)
+comment6.params=price\ discountPercentage
+comment6.target=int\ getDiscountedPrice(int,\ float)
+comment7.params=discountedPrice\ discountPercentage
+comment7.target=int\ getOriginalPrice(int,\ float)
+comment8.params=
+comment8.target=float\ getAdminFeePercentage()
+comment9.params=price
+comment9.target=int\ getAdminFee(int)
+numComments=11
