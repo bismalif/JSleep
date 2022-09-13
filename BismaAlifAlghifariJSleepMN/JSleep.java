@@ -46,7 +46,6 @@ public class JSleep
             return (int) 0;
         }else
             return (int) ((float)discountedPrice * (100.0 / (100.0 - discountPercentage)));
-
     }
 
     public static float getAdminFeePercentage(){
