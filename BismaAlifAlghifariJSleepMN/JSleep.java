@@ -11,12 +11,7 @@ public class JSleep
 {
 
     public static void main(String[] args){
-        JSleep Hotel = new JSleep();
-        System.out.println("getDiscPercent = " + getDiscountPercentage(1000, 800));
-        System.out.println("getDiscPrice = " + getDiscountedPrice(100000, 20.0f));
-        System.out.println("getOriginalPrice = " + getOriginalPrice(80000, 20.0f));
-        System.out.println("getAdminFee = " + getAdminFee(100000));
-        System.out.println("getTotal = " + getTotalPrice(10000, 2));
+        
     }
 
     public int getHotelId(){
