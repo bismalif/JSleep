@@ -14,7 +14,7 @@ public class JSleep
         
     }
 
-    public int getHotelId(){
+    public static int getHotelId(){
         return 0;
     }
 
