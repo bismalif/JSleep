@@ -2,6 +2,9 @@ package BismaAlifAlghifariJSleepMN;
 
 
 public enum Facility {
-    WiFi, Bathtub, Balcony, AC, FitnessCenter, Refrigerator, Restaurant, SwimmingPool
+    WiFi, Bathtub, 
+    Balcony, AC, 
+    FitnessCenter, Refrigerator, 
+    Restaurant, SwimmingPool
 }
 
