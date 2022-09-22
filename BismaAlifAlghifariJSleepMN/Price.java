@@ -27,22 +27,17 @@ public class Price {
     }
 
     private double getDiscountedPrice() {
-        if (discount > 100.0) {
+        if (discount >= 100.0) {
             return 0.0;
-        } else if (discount == 100.0) {
-            return 0.0;
-        } else {
-            return price - price * discount;
-        }
+        } return price - (price * ((double)discount/100.0));
+        
     }
 
-    private double getRebatededPrice() {
+    private double getRebatedPrice() {
         if (rebate > price){
-            return price;
-        }else {
-            return price - rebate;
-        }
-
+            rebate = price;
+        } return price - rebate;
+           
     }
 
 

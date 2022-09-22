@@ -2,7 +2,8 @@ package BismaAlifAlghifariJSleepMN;
 
 public class Rating
 {
-    private long total, count;
+    private long total; 
+    private long count;
 
     public Rating() {
         this.total = 0;
@@ -14,7 +15,7 @@ public class Rating
         count++;
     }
 
-    public long getAverage() {
+    public double getAverage() {
         if(count == 0) {
             return 0;
         }return total / count;

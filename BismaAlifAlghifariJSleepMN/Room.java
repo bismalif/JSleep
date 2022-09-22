@@ -1,10 +1,10 @@
 package BismaAlifAlghifariJSleepMN;
 
 public class Room {
-    int size;
-    String name;
-    Facility facility;
-    Price price;
+    public int size;
+    public String name;
+    public Facility facility;
+    public Price price;
 
 
     public Room(String name, int size, Price price, Facility facility){
@@ -12,9 +12,7 @@ public class Room {
         this.size = size;
         this.price = price;
         this.facility = facility;
-
     }
-
 
 }
 
