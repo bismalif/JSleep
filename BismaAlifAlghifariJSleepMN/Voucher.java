@@ -1,7 +1,7 @@
 package BismaAlifAlghifariJSleepMN;
 
 
-public class Voucher {
+public class Voucher extends Serializable{
 
     public Type type;
     public double cut;
@@ -10,7 +10,11 @@ public class Voucher {
     public double minimum;
     private boolean used;
 
-    public Voucher(String name, int code, Type type, double minimum){
+    public Voucher(int id, String name, int code, Type type, boolean used, double
+            minimum, double cut)
+    {
+        super(id);
+        this.name = name;
         this.type = type;
         this.cut = cut;
         this.code = code;
