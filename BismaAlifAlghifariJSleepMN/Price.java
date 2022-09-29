@@ -20,6 +20,12 @@ public class Price {
         //this.rebate = 0;
     }
 
+    public String toString(){
+        return  "Price : " + price +
+                "\nDiscount : " + discount+ "\n\n";
+
+    }
+
 /*
     public Price(double price, double rebate) {
         this.price = price;

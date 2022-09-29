@@ -1,8 +1,9 @@
 package BismaAlifAlghifariJSleepMN;
 
+
 public class Rating
 {
-    private long total; 
+    private long total;
     private long count;
 
     public Rating() {
@@ -30,4 +31,9 @@ public class Rating
         return total;
     }
 
+    public String toString(){
+        return "Total :" + total +
+                "\nCount : " + count + "\n\n";
+    }
 }
+
