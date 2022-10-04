@@ -7,27 +7,42 @@ package BismaAlifAlghifariJSleepMN;
  * @author (your name)
  * @version (a version number or a date)
  */
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
 public class Payment extends Invoice {
 
-    public String to;
-    public String from;
+    public Calendar to;
+    public Calendar from;
     private int roomId;
 
-    public Payment(int id, int buyerId, int renterId, String time, int roomId,
-                   String from, String to) {
-        super(id, buyerId, renterId, time);
-        this.to = to;
-        this.from = from;
+    public Payment(int id, int buyerId, int renterId, int roomId) {
+        super(id, buyerId, renterId);
+        this.to = Calendar.getInstance();
+        this.from = Calendar.getInstance();
+        this.to.add(Calendar.DATE, 2);
+        this.roomId = roomId;
+
+    }
+
+    public Payment(int id, Account buyer, Renter renter, int roomId) {
+        super(id, buyer, renter);
+        this.from = Calendar.getInstance();
+        this.to = Calendar.getInstance();
+        this.to.add(Calendar.DATE, 2);
         this.roomId = roomId;
     }
 
-    public Payment(int id, Account buyer, Renter renter, String time, int roomId,
-                   String from, String to) {
-        super(id, buyer, renter, time);
-        this.to = to;
-        this.from = from;
-        this.roomId = roomId;
+    public String getDuration(){
+        SimpleDateFormat SDFormat = new SimpleDateFormat("dd MMMM yyyy");
+        return SDFormat.format(this.from.getTime()) + " - " + SDFormat.format(this.to.getTime());
     }
+
+    public String getTime(){
+        SimpleDateFormat SDFormat = new SimpleDateFormat("'Formatted Date =' dd MMMM yyy");
+        return SDFormat.format(this.from.getTime());
+    }
+
+
 
     public String print() {
         return  "Id : " + id + " " +
@@ -36,7 +51,7 @@ public class Payment extends Invoice {
                 "Time : " + time + " " +
                 "Room Id : " + roomId + " " +
                 "From : " + from + " " +
-                "To : " + to;
+                "To : " + to + "\n\n";
     }
 
     public int getRoomId(){
