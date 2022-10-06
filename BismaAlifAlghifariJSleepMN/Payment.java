@@ -9,32 +9,29 @@ package BismaAlifAlghifariJSleepMN;
  */
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
-public class Payment extends Invoice {
+import java.util.Date;
 
-    public Calendar to;
-    public Calendar from;
+public class Payment extends Invoice  {
+
+    public Date to;
+    public Date from;
     private int roomId;
 
-    public Payment(int id, int buyerId, int renterId, int roomId) {
+    public Payment(int id, int buyerId, int renterId, int roomId, Date
+            from, Date to) {
         super(id, buyerId, renterId);
-        this.to = Calendar.getInstance();
-        this.from = Calendar.getInstance();
-        this.to.add(Calendar.DATE, 2);
+        this.to = to;
+        this.from = from;
         this.roomId = roomId;
 
     }
 
-    public Payment(int id, Account buyer, Renter renter, int roomId) {
+    public Payment(int id, Account buyer, Renter renter, int roomId, Date
+            from, Date to) {
         super(id, buyer, renter);
-        this.from = Calendar.getInstance();
-        this.to = Calendar.getInstance();
-        this.to.add(Calendar.DATE, 2);
+        this.to = to;
+        this.from = from;
         this.roomId = roomId;
-    }
-
-    public String getDuration(){
-        SimpleDateFormat SDFormat = new SimpleDateFormat("dd MMMM yyyy");
-        return SDFormat.format(this.from.getTime()) + " - " + SDFormat.format(this.to.getTime());
     }
 
     public String getTime(){
@@ -42,7 +39,39 @@ public class Payment extends Invoice {
         return SDFormat.format(this.from.getTime());
     }
 
+    public static boolean availability(Date from,Date to,Room room){
+        if(room.booked.isEmpty()) {
+            return true;
+        }
+        for (Date i : room.booked){
+            if((i.after(from) && i.before(to)) || i.equals(from))
+                return false;
+        }
 
+        return true;
+
+
+
+
+    }
+
+    public static boolean makeBooking(Date from,Date to,Room room){
+        if(to.before(from))
+            return false;
+
+
+        if(availability(from, to, room)){
+            while (from.before(to)){
+                room.booked.add(from);
+                Calendar c = Calendar.getInstance();
+                c.setTime(from);
+                c.add(Calendar.DATE, 1);
+                from = c.getTime();
+            }return true;
+
+        }return false;
+
+    }
 
     public String print() {
         return  "Id : " + id + " " +
@@ -57,5 +86,6 @@ public class Payment extends Invoice {
     public int getRoomId(){
         return this.roomId;
     }
+
 
 }

@@ -1,7 +1,7 @@
 package BismaAlifAlghifariJSleepMN;
 
 
-public class Account extends Serializable {
+public class Account extends Serializable implements FileParser {
     public String name;
     public String email;
     public String password;
@@ -21,6 +21,14 @@ public class Account extends Serializable {
                 "\nPassword : " + password + "\n\n";
     }
 
+    @Override
+    public Object write() {
+        return null;
+    }
+
+    public boolean read(String content) {
+        return false;
+    }
 }
 
 
