@@ -38,15 +38,17 @@ public class Payment extends Invoice  {
         if(room.booked.isEmpty()) {
             return true;
         }
-        for (Date i : room.booked){
-            if((i.after(from) && i.before(to)) || i.equals(from))
+
+        for (Date i : room.booked) {
+
+            if (from.equals(i)) {
                 return false;
+            } else if(from.before(i) && to.after(i)){
+                    return false;
+            }
         }
 
         return true;
-
-
-
 
     }
 
