@@ -15,9 +15,9 @@ public class JSleep {
     public static void main(String[] args) {
         Room RoomA = JSleep.createRoom();
         Room RoomB = JSleep.createRoom();
-        System.out.println("Membuat booking dari tanggal 15 hingga 18");
+        System.out.println("Membuat booking dari tanggal 15 hingga 15");
         Date start = Date.valueOf("2022-8-15");
-        Date end = Date.valueOf("2022-8-18");
+        Date end = Date.valueOf("2022-8-15");
         System.out.println(Payment.makeBooking(start, end, RoomA));
 
         System.out.println("Membuat booking dari tanggal 15 hingga 18");

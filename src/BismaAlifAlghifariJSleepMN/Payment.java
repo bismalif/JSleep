@@ -35,13 +35,16 @@ public class Payment extends Invoice  {
     }
 
     public static boolean availability(Date from,Date to,Room room){
+        if (from.equals(to))
+            return false;
+
         if(room.booked.isEmpty()) {
             return true;
         }
 
         for (Date i : room.booked) {
 
-            if (from.equals(i)) {
+            if (from.equals(i) ) {
                 return false;
             } else if(from.before(i) && to.after(i)){
                     return false;
