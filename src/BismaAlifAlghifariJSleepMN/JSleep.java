@@ -21,7 +21,7 @@ public class JSleep {
         System.out.println(Payment.makeBooking(start, end, RoomA));
 
         System.out.println("Membuat booking dari tanggal 15 hingga 18");
-        Date start2 = Date.valueOf("2022-8-17");
+        Date start2 = Date.valueOf("2022-8-16");
         Date end2 = Date.valueOf("2022-8-20");
         System.out.println(Payment.makeBooking(start2, end2, RoomA));
 
