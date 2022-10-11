@@ -22,7 +22,7 @@ public class Price {
 
     public String toString(){
         return  "Price : " + price +
-                "\nDiscount : " + discount+ "\n\n";
+                "\nDiscount : " + discount;
 
     }
 
