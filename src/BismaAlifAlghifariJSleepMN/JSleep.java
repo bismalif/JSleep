@@ -23,8 +23,10 @@ public class JSleep {
 
     public static Room createRoom() {
         Price price = new Price(100000.0, 5);
-        Room room = new Room( "Restaurant", 30, price,
+        Room room = new Room( "Hotel", 30, price,
                 Facility.AC, City.DEPOK, "Jalan Margonda Raya");
         return room;
     }
+
+
 }
