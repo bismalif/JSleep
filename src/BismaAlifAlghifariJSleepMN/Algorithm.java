@@ -218,13 +218,14 @@ public class Algorithm {
     public static <T> List<T> paginate(Iterator<T> iterator, int page, int pageSize, Predicate<T> pred) {
 
         List<T> list = new ArrayList<T>();
-        int count = 0;
+        int occurrence = 0;
+        int pageBegin = page * pageSize;
         while (iterator.hasNext()){
             if (pred.predicate(iterator.next())) {
-                if (count >= page * pageSize && count < (page * pageSize) + pageSize) {
+                if (occurrence >= pageBegin && occurrence < pageBegin + pageSize) {
                     list.add(iterator.next());
                 }
-                count++;
+                occurrence++;
             }
         }
         return list;
