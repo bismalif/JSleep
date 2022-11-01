@@ -1,33 +1,36 @@
 package BismaAlifAlghifariJSleepMN;
 
 
-
+import java.util.regex.*;
 
 public class Renter extends Serializable {
-    public int phoneNumber = 0;
-    public String address = "";
+    public String phoneNumber;
+    public String address;
     public String username;
 
-    public Renter(String username){
+    public static final String REGEX_PHONE = "^[0-9]{9,12}$";
+    public static final String REGEX_NAME = "^[A-Z]{1}\\w{4,20}$";
 
-        this.username = username;
-    }
-    public Renter(String username, String address){
-
-        this.username = username;
-        this.address = address;
-    }
-    public Renter(String username, int phoneNumber){
-
-        this.username = username;
-        this.phoneNumber = phoneNumber;
-    }
-    public Renter(String username, int phoneNumber, String address){
+    public Renter(String username, String phoneNumber, String address){
 
         this.username = username;
         this.phoneNumber = phoneNumber;
         this.address = address;
+
     }
+
+    public boolean validate (){
+
+        Pattern namePattern = Pattern.compile(REGEX_NAME);
+        Matcher nameMatcher = namePattern.matcher(username);
+        Pattern phonePattern = Pattern.compile(REGEX_PHONE);
+        Matcher phoneMatcher = phonePattern.matcher(phoneNumber);
+
+        return nameMatcher.find() && phoneMatcher.find();
+
+    }
+
+
 
 }
 

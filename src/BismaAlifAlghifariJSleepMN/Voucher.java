@@ -1,7 +1,7 @@
 package BismaAlifAlghifariJSleepMN;
 
 
-public class Voucher extends Serializable implements FileParser{
+public class Voucher extends Serializable {
 
     public Type type;
     public double cut;
@@ -42,13 +42,6 @@ public class Voucher extends Serializable implements FileParser{
         return used = true;
     }
     
-    @Override
-    public Object write() {
-        return null;
-    }
 
-    public boolean read(String content) {
-        return false;
-    }    
 }
 

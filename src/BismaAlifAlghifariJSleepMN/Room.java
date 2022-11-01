@@ -6,7 +6,7 @@ package BismaAlifAlghifariJSleepMN;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Room extends Serializable implements FileParser {
+public class Room extends Serializable{
     public int size;
     public String name;
     public Facility facility;
@@ -16,10 +16,13 @@ public class Room extends Serializable implements FileParser {
     public City city;
     public ArrayList<Date> booked;
 
+    public int accountId;
 
-    public Room(String name, int size, Price price,
+
+    public Room(int accountId, String name, int size, Price price,
                 Facility facility, City city, String address)
     {
+        this.accountId = accountId;
         this.city = city;
         this.address = address;
         this.name = name;
@@ -41,13 +44,6 @@ public class Room extends Serializable implements FileParser {
                 "\nId : " + id + "\n\n";
     }
 
-    @Override
-    public Object write() {
-        return null;
-    }
 
-    public boolean read(String content) {
-        return false;
-    }
 }
 
