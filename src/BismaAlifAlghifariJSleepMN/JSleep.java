@@ -27,10 +27,10 @@ public class JSleep {
     }
 
     public static void main(String[] args) {
-//        Renter testregex = new Renter("Netlab_", "081234567890", "Jl Margonda Raya");
-//        Renter testregexFail = new Renter("Netlab", "081", "Jalan");
-//        System.out.println(testregex.validate());
-//        System.out.println(testregexFail.validate());
+        Account testRegex = new Account("Netlab_", "bisma@gmail.com", "JokiNaufalFaza88");
+        Account testRegexFail = new Account("A", "bisma.alif@ui.ac.id", "JokiMelchiorNathan");
+        System.out.println(testRegex.validate());
+        System.out.println(testRegexFail.validate());
 
         try {
             String filepath = "src\\json\\account.json";
