@@ -15,12 +15,12 @@ import java.util.regex.Pattern;
 @RequestMapping("/account")
 public class AccountController implements BasicGetController
 {
-    @JsonAutowired(value = Account.class,filepath = "akun.json")
+
     public static final String REGEX_EMAIL = "^[a-zA-Z0-9]+@[a-zA-Z.]+\\.[a-zA-Z]+?$";
     public static final String REGEX_PASSWORD = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$";
     public static final Pattern REGEX_PATTERN_EMAIL = Pattern.compile(REGEX_EMAIL);
     public static final Pattern REGEX_PATTERN_PASSWORD = Pattern.compile(REGEX_PASSWORD);
-
+    @JsonAutowired(value = Account.class,filepath = "account.json")
     public static JsonTable<Account> accountTable;
     @GetMapping
     String index() { return "account page"; }
