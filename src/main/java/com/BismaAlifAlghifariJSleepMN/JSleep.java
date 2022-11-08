@@ -1,16 +1,11 @@
 package com.BismaAlifAlghifariJSleepMN;
+import com.BismaAlifAlghifariJSleepMN.dbjson.JsonDBEngine;
+import com.BismaAlifAlghifariJSleepMN.dbjson.JsonTable;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Scanner;
-import java.sql.Date;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.List;
-import java.util.regex.*;
 
 /**
  * Bisma Alif Alghifari
@@ -30,22 +25,30 @@ public class JSleep {
     }
 
     public static void main(String[] args) {
+//        SpringApplication.run(JSleep.class, args);
+//
+//        Account testRegex = new Account("Netlab_", "bisma@gmail.com", "JokiNaufalFaza88");
+//        Account testRegexFail = new Account("A", "bisma.alif@ui.ac.id", "JokiMelchiorNathan");
+//        System.out.println(testRegex.validate());
+//        System.out.println(testRegexFail.validate());
+//
+//        try {
+//            String filepath = "src\\json\\account.json";
+//            JsonTable<Account> tableAccount = new JsonTable<Account>(Account.class, filepath);
+//            tableAccount.add(new Account("Name", "Email", "Password"));
+//            tableAccount.writeJson();
+//
+//            tableAccount = new JsonTable<Account>(Account.class, filepath);
+//            tableAccount.forEach(acc -> System.out.println(acc.toString()));
+//
+//        } catch (Throwable t) {
+//            t.printStackTrace();
+//        }
+
+
+        JsonDBEngine.Run(JSleep.class);
         SpringApplication.run(JSleep.class, args);
-
-        Account testRegex = new Account("Netlab_", "bisma@gmail.com", "JokiNaufalFaza88");
-        Account testRegexFail = new Account("A", "bisma.alif@ui.ac.id", "JokiMelchiorNathan");
-        System.out.println(testRegex.validate());
-        System.out.println(testRegexFail.validate());
-
-        try {
-            String filepath = "src\\json\\account.json";
-            JsonTable<Account> tableAccount = new JsonTable<Account>(Account.class, filepath);
-            tableAccount.add(new Account("Name", "Email", "Password"));
-            tableAccount.writeJson();
-
-        } catch (Throwable t) {
-            t.printStackTrace();
-        }
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> JsonDBEngine.join()));
 
         for(int i = 0; i < 10; i++) {
             ThreadingObject thread = new ThreadingObject("Thread " + i);
@@ -68,6 +71,5 @@ public class JSleep {
         ArrayList<Room> accountIdResult = new ArrayList<>();
         return Algorithm.paginate(list, page, pageSize, id -> id.accountId == accountId);
     }
-
 
 }

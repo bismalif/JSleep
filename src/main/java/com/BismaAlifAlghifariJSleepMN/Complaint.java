@@ -1,6 +1,7 @@
 package com.BismaAlifAlghifariJSleepMN;
 
 
+import com.BismaAlifAlghifariJSleepMN.dbjson.Serializable;
 
 public class Complaint extends Serializable {
     public String desc;

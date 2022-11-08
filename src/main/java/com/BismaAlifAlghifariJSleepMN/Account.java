@@ -1,8 +1,13 @@
 package com.BismaAlifAlghifariJSleepMN;
 
+import com.BismaAlifAlghifariJSleepMN.dbjson.Serializable;
+
 import java.util.regex.*;
 
-public class Account extends Serializable  {
+public class Account extends Serializable {
+
+    public double balance;
+    public Renter renter;
     public String name;
     public String email;
     public String password;

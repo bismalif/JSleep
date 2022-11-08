@@ -1,6 +1,8 @@
 package com.BismaAlifAlghifariJSleepMN;
 
 
+import com.BismaAlifAlghifariJSleepMN.dbjson.Serializable;
+
 import java.util.regex.*;
 
 public class Renter extends Serializable {

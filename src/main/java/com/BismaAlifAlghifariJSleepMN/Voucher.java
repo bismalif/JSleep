@@ -1,6 +1,8 @@
 package com.BismaAlifAlghifariJSleepMN;
 
 
+import com.BismaAlifAlghifariJSleepMN.dbjson.Serializable;
+
 public class Voucher extends Serializable {
 
     public Type type;
