@@ -1,6 +1,5 @@
 package com.BismaAlifAlghifariJSleepMN;
 import com.BismaAlifAlghifariJSleepMN.dbjson.JsonDBEngine;
-import com.BismaAlifAlghifariJSleepMN.dbjson.JsonTable;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -18,11 +17,11 @@ import java.util.List;
 public class JSleep {
 
 
-    class Country{
-        public String name;
-        public String population;
-        public List<String> listOfStates;
-    }
+//    class Country{
+//        public String name;
+//        public String population;
+//        public List<String> listOfStates;
+//    }
 
     public static void main(String[] args) {
 //        SpringApplication.run(JSleep.class, args);
@@ -44,15 +43,15 @@ public class JSleep {
 //        } catch (Throwable t) {
 //            t.printStackTrace();
 //        }
-
-
         JsonDBEngine.Run(JSleep.class);
         SpringApplication.run(JSleep.class, args);
         Runtime.getRuntime().addShutdownHook(new Thread(() -> JsonDBEngine.join()));
 
-        for(int i = 0; i < 10; i++) {
-            ThreadingObject thread = new ThreadingObject("Thread " + i);
-        }
+    }
+
+    public static Room createRoom(){
+        Price price = new Price(100000.0,5);
+        return new Room(2,"Restaurant",30,price,Facility.AC,City.JAKARTA,"Jl.Medan");
     }
 
 

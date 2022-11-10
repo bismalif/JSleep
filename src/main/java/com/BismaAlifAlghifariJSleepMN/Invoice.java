@@ -8,7 +8,7 @@ import java.util.Date;
 public class Invoice extends Serializable {
     public int buyerId;
     public int renterId;
-    public Date time;
+
     public PaymentStatus status;
     public RoomRating rating;
 
@@ -27,7 +27,7 @@ public class Invoice extends Serializable {
         this.status = PaymentStatus.WAITING;
         this.buyerId = buyerId;
         this.renterId = renterId;
-        this.time = new Date();
+
     }
 
     public Invoice(Account buyer, Renter renter) {
@@ -35,15 +35,13 @@ public class Invoice extends Serializable {
         this.status = PaymentStatus.WAITING;
         this.buyerId = buyer.id;
         this.renterId = renter.id;
-        this.time = new Date();
+
     }
 
     public String print(){
         return  "Id : " + this.id + " " +
                 "Buyer Id : " + this.buyerId + " " +
-                "Renter Id : " + this.renterId + " " +
-                "Time : " + this.time + "\n\n";
-
+                "Renter Id : " + this.renterId + " ";
     }
 
 

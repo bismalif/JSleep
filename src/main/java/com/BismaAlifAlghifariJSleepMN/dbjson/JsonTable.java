@@ -37,19 +37,16 @@ public class JsonTable<T> extends Vector<T> {
             file.createNewFile();
         }
     }
-
     public void writeJson() throws IOException
     {
         writeJson(this, this.filepath);
     }
-
     public static void writeJson(Object object, String filepath) throws IOException
     {
         final FileWriter writer = new FileWriter(filepath);
         writer.write(gson.toJson(object));
         writer.close();
     }
-
     public static <T> T readJson(Class<T> clazz, String filepath) throws FileNotFoundException
     {
         final JsonReader reader = new JsonReader(new FileReader(filepath));

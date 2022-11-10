@@ -4,7 +4,7 @@ package com.BismaAlifAlghifariJSleepMN;
 public class Price {
 
     //public double rebate;
-    public double price;
+    public static double price;
     public double discount;
 
 

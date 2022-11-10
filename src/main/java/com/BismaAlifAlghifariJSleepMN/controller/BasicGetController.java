@@ -1,5 +1,6 @@
 package com.BismaAlifAlghifariJSleepMN.controller;
 
+import com.BismaAlifAlghifariJSleepMN.Algorithm;
 import com.BismaAlifAlghifariJSleepMN.dbjson.JsonTable;
 import com.BismaAlifAlghifariJSleepMN.dbjson.Serializable;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,15 +13,21 @@ import java.util.List;
 public interface BasicGetController <T extends Serializable> {
 
     @GetMapping("/{id}")
-    public default T getById (@PathVariable int id){
-        return getJsonTable().get(id);
+    public default T getById(
+            @PathVariable int id
+    ){
+        T object = (T) Algorithm.<T>find(getJsonTable(), pred -> pred.id == id);
+        return object;
     }
 
-    public abstract JsonTable<T> getJsonTable ();
+    public abstract JsonTable<T> getJsonTable();
 
     @GetMapping("/page")
-    public default List<T> getPage(@RequestParam int page, @RequestParam int pageSize){
-        return getJsonTable().subList(page, page + pageSize);
+    public default List<T> getPage(
+            @RequestParam  int page,
+            @RequestParam int pageSize
+    ){
+        return Algorithm.<T>paginate(getJsonTable(), page, pageSize, pred -> true);
     }
 
 }

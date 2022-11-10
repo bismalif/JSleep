@@ -29,10 +29,6 @@ public class Payment extends Invoice  {
         this.roomId = roomId;
     }
 
-    public String getTime(){
-        SimpleDateFormat SDFormat = new SimpleDateFormat("'Formatted Date =' dd MMMM yyy");
-        return SDFormat.format(this.from.getTime());
-    }
 
     public static boolean availability(Date from,Date to,Room room){
         if (from.equals(to))
@@ -76,7 +72,6 @@ public class Payment extends Invoice  {
         return  "Id : " + id + " " +
                 "Buyer Id : " + buyerId + " " +
                 "Renter Id : " + renterId + " " +
-                "Time : " + time + " " +
                 "Room Id : " + roomId + " " +
                 "From : " + from + " " +
                 "To : " + to + "\n\n";
