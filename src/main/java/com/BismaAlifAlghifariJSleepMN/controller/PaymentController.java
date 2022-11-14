@@ -4,9 +4,8 @@ import com.BismaAlifAlghifariJSleepMN.*;
 import com.BismaAlifAlghifariJSleepMN.dbjson.JsonAutowired;
 import com.BismaAlifAlghifariJSleepMN.dbjson.JsonTable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/payment")
 public class PaymentController implements BasicGetController<Payment> {
     @JsonAutowired
-            (value = Payment.class, filepath = "/Users/rijal/Documents/OOPLOCAL/Praktikum/BlueJ/Praktikum-JSleep/src/json/payment.json")
+            (value = Payment.class, filepath = "src\\json\\payment.json")
     public static JsonTable<Payment> paymentTable;
 
     public JsonTable<Payment> getJsonTable() {
@@ -30,7 +29,12 @@ public class PaymentController implements BasicGetController<Payment> {
     }
 
     @PostMapping("/create")
-    public Payment create(@RequestParam int buyerId, @RequestParam int renterId, @RequestParam int roomId, @RequestParam String from, @RequestParam String to) throws ParseException {
+    public Payment create(@RequestParam int buyerId,
+                          @RequestParam int renterId,
+                          @RequestParam int roomId,
+                          @RequestParam String from,
+                          @RequestParam String to
+    ) throws ParseException {
         Account acc = Algorithm.<Account>find(AccountController.accountTable, pred -> pred.id == buyerId && pred.id == buyerId);
         Room room = Algorithm.<Room>find(RoomController.roomTable, pred -> pred.id == roomId && pred.accountId == roomId);
 
@@ -44,7 +48,7 @@ public class PaymentController implements BasicGetController<Payment> {
         if(acc.balance >= price && acc != null && room != null  ){
             Payment payment = new Payment(buyerId, renterId, roomId, fromDate, toDate);
             acc.balance -= price;
-            payment.status=Invoice.PaymentStatus.WAITING;
+            payment.status= Invoice.PaymentStatus.WAITING;
             payment.makeBooking(fromDate, toDate, room);
             paymentTable.add(payment);
             return payment;
@@ -72,4 +76,5 @@ public class PaymentController implements BasicGetController<Payment> {
         }
         return false;
     }
+
 }

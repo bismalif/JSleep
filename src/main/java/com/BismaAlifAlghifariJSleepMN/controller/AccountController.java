@@ -25,7 +25,7 @@ public class AccountController implements BasicGetController<Account>
 
     public static final Pattern REGEX_PATTERN_EMAIL = Pattern.compile(REGEX_EMAIL);
     public static final Pattern REGEX_PATTERN_PASSWORD = Pattern.compile(REGEX_PASSWORD);
-    @JsonAutowired(value = Account.class,filepath = "src/json/account.json")
+    @JsonAutowired(value = Account.class,filepath = "src\\json\\account.json")
     public static JsonTable<Account> accountTable;
 
     @GetMapping
@@ -69,7 +69,7 @@ public class AccountController implements BasicGetController<Account>
             Account account = new Account(name, email, generatedPassword);
             accountTable.add(account);
             return account;
-        } return new Account("Bisma tolol","Biefes@gmail.com","12345678");
+        } return null;
 
 //        if (!name.isBlank() && matchEmail && matchFoundPassword){
 //            generatedPassword = hashPassword(password);

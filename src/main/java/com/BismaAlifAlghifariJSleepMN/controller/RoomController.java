@@ -12,7 +12,7 @@ import java.util.List;
 public class RoomController implements BasicGetController<Room> {
 
 
-    @JsonAutowired(value = Room.class, filepath = "src/json/room.json")
+    @JsonAutowired(value = Room.class, filepath = "src\\json\\.json")
     public static JsonTable<Room> roomTable;
 
 

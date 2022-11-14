@@ -8,40 +8,50 @@ import com.BismaAlifAlghifariJSleepMN.dbjson.JsonAutowired;
 import com.BismaAlifAlghifariJSleepMN.dbjson.JsonTable;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/voucher")
 public class VoucherController implements BasicGetController<Voucher> {
-    @JsonAutowired(value= Account.class,filepath = "src/json/voucher.json")
+    @JsonAutowired(value= Account.class,filepath = "src\\json\\.json")
     public static JsonTable<Voucher> voucherTable;
 
-    public JsonTable<Voucher> getJsonTable(){
+
+    public JsonTable getJsonTable() {
         return voucherTable;
     }
 
-    @GetMapping ("/{id}/isUsed")
+    @GetMapping
     boolean isUsed(
-            @PathVariable int id
+            @RequestParam int id
     ){
         Voucher voucher = Algorithm.<Voucher>find(getJsonTable(), pred -> pred.id == id);
         return voucher.isUsed();
     }
 
-    @GetMapping("/{id}/canApply")
+    @GetMapping("/canApply")
     boolean canApply(
-            @PathVariable int id,
-            @RequestParam Double price
+            @RequestParam int id,
+            @RequestParam double price
     ){
-        Voucher voucher = Algorithm.<Voucher>find(getJsonTable(),pred -> pred.id == id);
+        Voucher voucher = Algorithm.<Voucher>find(getJsonTable(), pred -> pred.id == id);
         return voucher.canApply(new Price(price));
     }
 
+    @GetMapping("/getAvailable")
     List<Voucher> getAvailable(
             @RequestParam int page,
             @RequestParam int pageSize
     ){
-        return Algorithm.paginate(getJsonTable(), page, pageSize, pred -> !pred.isUsed());
+        List<Voucher> collectVoucher = Algorithm.<Voucher>collect(getJsonTable(), pred -> true);
+        List<Voucher> availableVoucher = new ArrayList<>();
+        for(Voucher voucher : collectVoucher){
+            if(!voucher.isUsed()){
+                availableVoucher.add(voucher);
+            }
+        }
+        return Algorithm.<Voucher>paginate(availableVoucher, page, pageSize, pred -> true);
     }
 
 }
