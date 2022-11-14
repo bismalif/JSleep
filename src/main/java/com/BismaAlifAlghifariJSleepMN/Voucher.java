@@ -23,8 +23,10 @@ public class Voucher extends Serializable {
         this.used = false;
     }
 
-    public boolean canApply(){
-        return(Price.price > minimum && used == false);
+    public boolean canApply(Price price){
+        if((price.price > minimum) && (!this.used)){
+            return true;
+        } return false;
     }
 
     public double apply(Price price){

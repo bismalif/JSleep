@@ -54,25 +54,33 @@ public class AccountController implements BasicGetController<Account>
             @RequestParam String email,
             @RequestParam String password
     ){
-        Pattern patternEmail = Pattern.compile(REGEX_EMAIL);
-        Matcher matcherEmail = patternEmail.matcher(email);
+
+        Matcher matcherEmail = REGEX_PATTERN_EMAIL.matcher(email);
         boolean matchEmail = matcherEmail.find();
 
-        Pattern patternPassword = Pattern.compile(REGEX_PASSWORD);
-        Matcher matcherPassword = patternPassword.matcher(password);
+        Matcher matcherPassword = REGEX_PATTERN_PASSWORD.matcher(password);
         boolean matchFoundPassword = matcherPassword.find();
+
         Account findAccount = Algorithm.<Account> find(getJsonTable(),pred -> pred.email.equals(email));
-        final String generatedPassword;
 
-        if ( matchEmail && matchFoundPassword && !name.isBlank() && findAccount == null){
+        if (findAccount == null && matchEmail && matchFoundPassword) {
+            final String generatedPassword;
             generatedPassword = hashPassword(password);
-            Account newAccount = new Account(name, email, generatedPassword);
+            Account account = new Account(name, email, generatedPassword);
+            accountTable.add(account);
+            return account;
+        } return new Account("Bisma tolol","Biefes@gmail.com","12345678");
 
-            accountTable.add(newAccount);
-            return newAccount;
-        }
+//        if (!name.isBlank() && matchEmail && matchFoundPassword){
+//            generatedPassword = hashPassword(password);
+//            Account newAccount = new Account(name, email, generatedPassword);
+//            accountTable.add(newAccount);
+//            return newAccount;
+//        } else {
+//            return null;
+//        }
 
-        return null;
+
     }
 
 

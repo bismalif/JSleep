@@ -49,26 +49,27 @@ public class JSleep {
 
     }
 
-    public static Room createRoom(){
-        Price price = new Price(100000.0,5);
-        return new Room(2,"Restaurant",30,price,Facility.AC,City.JAKARTA,"Jl.Medan");
-    }
+//    public static Room createRoom(){
+//        Price price = new Price(100000.0,5);
+//        return new Room(2,"Restaurant",30,price,Facility.AC,City.JAKARTA,"Jl.Medan");
+//    }
 
 
-    public static List<Room> filterByCity(List <Room> list , String search, int page, int pageSize){
-        return Algorithm.paginate(list, page, pageSize, room -> room.city.toString().toLowerCase().contains(search.toLowerCase()));
-    }
-
-    public static List<Room> filterByPrice(List<Room> priceList, double minPrice, double maxPrice){
-        if(maxPrice == 0){
-            return Algorithm.<Room>collect(priceList, temp -> (temp.price.price >= minPrice));
-        }
-        return Algorithm.<Room>collect(priceList, temp -> (temp.price.price <= maxPrice) && (temp.price.price >= minPrice));
-    }
-
-    public static List<Room>  filterByAccountId(List <Room> list , int accountId, int page, int pageSize){
-        ArrayList<Room> accountIdResult = new ArrayList<>();
-        return Algorithm.paginate(list, page, pageSize, id -> id.accountId == accountId);
-    }
+//
+//    public static List<Room> filterByCity(List <Room> list , String search, int page, int pageSize){
+//        return Algorithm.paginate(list, page, pageSize, room -> room.city.toString().toLowerCase().contains(search.toLowerCase()));
+//    }
+//
+//    public static List<Room> filterByPrice(List<Room> priceList, double minPrice, double maxPrice){
+//        if(maxPrice == 0){
+//            return Algorithm.<Room>collect(priceList, temp -> (temp.price.price >= minPrice));
+//        }
+//        return Algorithm.<Room>collect(priceList, temp -> (temp.price.price <= maxPrice) && (temp.price.price >= minPrice));
+//    }
+//
+//    public static List<Room>  filterByAccountId(List <Room> list , int accountId, int page, int pageSize){
+//        ArrayList<Room> accountIdResult = new ArrayList<>();
+//        return Algorithm.paginate(list, page, pageSize, id -> id.accountId == accountId);
+//    }
 
 }

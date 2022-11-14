@@ -4,25 +4,22 @@ package com.BismaAlifAlghifariJSleepMN;
 public class Price {
 
     //public double rebate;
-    public static double price;
+    public double price;
     public double discount;
 
 
     public Price(double price) {
         this.price = price;
         this.discount = 0;
-        //this.rebate = 0;
     }
 
     public Price(double price, double discount) {
         this.price = price;
         this.discount = discount;
-        //this.rebate = 0;
     }
 
     public String toString(){
-        return  "Price : " + price +
-                "\nDiscount : " + discount;
+        return  "Price : " + price;
 
     }
 

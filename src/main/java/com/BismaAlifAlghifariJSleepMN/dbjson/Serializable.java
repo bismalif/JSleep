@@ -2,45 +2,47 @@ package com.BismaAlifAlghifariJSleepMN.dbjson;
 
 
 import java.util.HashMap;
-
-public class Serializable implements Comparable<Serializable> {
-    private static HashMap <Class<?>, Integer > mapCounter = new HashMap<>();
+public class Serializable implements Comparable<Serializable>
+{
     public final int id;
-    protected Serializable (){
-        Integer counter = mapCounter.get(getClass());
-        if (counter == null){
-            counter = 0;
-        } else {
-            counter++;
+    private static HashMap<Class<?>,Integer> mapCounter = new HashMap<Class<?>,Integer>() ;
+
+    protected Serializable(){
+
+        Integer count = mapCounter.get(this.getClass());
+        if(count == null){
+            count = 0;
+            mapCounter.put(getClass(),count);
         }
-    mapCounter.put(getClass(), counter);
-    this.id = counter;
+        else {
+            count++;
+            mapCounter.put(getClass(),count);
+        }
+
+        this.id = count;
     }
 
-
-    public int compareTo(Serializable other){
-        return Integer.compare(this.id, other.id);
+    public static <T extends Serializable> Integer getClosingId(Class<T> obj){
+        return mapCounter.get(obj);
     }
 
-    public boolean equals(Object other){
-        return other instanceof Serializable && ((Serializable) other).id == id;
+    public static <T extends Serializable> Integer setClosingId(Class<T> obj, int data){
+        return mapCounter.put(obj,data);
     }
 
-    public boolean equals(Serializable other){
-        return other.id == id;
+    public int compareTo(Serializable param){
+        return Integer.compare(this.id,param.id);
     }
 
-    public static <T extends Serializable> Integer getClosingId(Class<?> Class){
-        return mapCounter.get(Class);
+    public boolean equals(Object obj)
+    {
+        return (obj instanceof Serializable) && ((Serializable) obj).id == id;
     }
-
-    public static <T extends Serializable> Integer setClosingId(Class<?> Class, int id){
-        return mapCounter.put(Class, id);
+    public boolean equals(Serializable obj)
+    {
+        return obj.id == this.id;
     }
-
-
 
 
 }
-
 

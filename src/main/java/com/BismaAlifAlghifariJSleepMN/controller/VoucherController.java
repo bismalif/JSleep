@@ -2,6 +2,7 @@ package com.BismaAlifAlghifariJSleepMN.controller;
 
 import com.BismaAlifAlghifariJSleepMN.Account;
 import com.BismaAlifAlghifariJSleepMN.Algorithm;
+import com.BismaAlifAlghifariJSleepMN.Price;
 import com.BismaAlifAlghifariJSleepMN.Voucher;
 import com.BismaAlifAlghifariJSleepMN.dbjson.JsonAutowired;
 import com.BismaAlifAlghifariJSleepMN.dbjson.JsonTable;
@@ -33,7 +34,7 @@ public class VoucherController implements BasicGetController<Voucher> {
             @RequestParam Double price
     ){
         Voucher voucher = Algorithm.<Voucher>find(getJsonTable(),pred -> pred.id == id);
-        return voucher.canApply();
+        return voucher.canApply(new Price(price));
     }
 
     List<Voucher> getAvailable(
