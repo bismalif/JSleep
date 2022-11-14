@@ -38,7 +38,7 @@ public class PaymentController implements BasicGetController<Payment> {
         Account acc = Algorithm.<Account>find(AccountController.accountTable, pred -> pred.id == buyerId && pred.id == buyerId);
         Room room = Algorithm.<Room>find(RoomController.roomTable, pred -> pred.id == roomId && pred.accountId == roomId);
 
-        // Price price = new Price(room.price.price);
+
         double price = room.price.price;
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

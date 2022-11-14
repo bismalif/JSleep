@@ -17,12 +17,12 @@ public class VoucherController implements BasicGetController<Voucher> {
     @JsonAutowired(value= Account.class,filepath = "src\\json\\.json")
     public static JsonTable<Voucher> voucherTable;
 
-
-    public JsonTable getJsonTable() {
+    @Override
+    public JsonTable<Voucher> getJsonTable() {
         return voucherTable;
     }
 
-    @GetMapping
+    @GetMapping("/{id}/isUsed")
     boolean isUsed(
             @RequestParam int id
     ){
@@ -30,7 +30,7 @@ public class VoucherController implements BasicGetController<Voucher> {
         return voucher.isUsed();
     }
 
-    @GetMapping("/canApply")
+    @GetMapping("/{id}/canApply ")
     boolean canApply(
             @RequestParam int id,
             @RequestParam double price
