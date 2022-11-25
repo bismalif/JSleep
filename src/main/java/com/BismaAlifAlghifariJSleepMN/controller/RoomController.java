@@ -5,6 +5,8 @@ import com.BismaAlifAlghifariJSleepMN.dbjson.JsonAutowired;
 import com.BismaAlifAlghifariJSleepMN.dbjson.JsonTable;
 import org.springframework.web.bind.annotation.*;
 import com.BismaAlifAlghifariJSleepMN.Price;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -37,18 +39,29 @@ public class RoomController implements BasicGetController<Room> {
             @RequestParam String name,
             @RequestParam int size,
             @RequestParam int price,
-            @RequestParam Facility facility,
+            @RequestParam ArrayList<Facility> facility,
             @RequestParam City city,
-            @RequestParam String address
+            @RequestParam String address,
+            @RequestParam BedType bedType
     ){
 
         Account account = Algorithm.<Account>find(AccountController.accountTable, pred -> pred.id == accountId && pred.renter != null);
         if(account == null) return null;
         else{
-            Room room = new Room(accountId, name, size, new Price(price), facility, city, address);
+            Room room = new Room(accountId, name, size, new Price(price), facility, city, address, bedType);
             roomTable.add(room);
             return room;
         }
     }
+
+    @GetMapping("/{id}/renter")
+    List<Room> getAllRoom(
+            @RequestParam int page,
+            @RequestParam int pageSize
+            ){
+        return Algorithm.paginate(getJsonTable(), page, pageSize, pred -> true);
+    }
+
+
 
 }

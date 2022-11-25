@@ -1,4 +1,5 @@
 package com.BismaAlifAlghifariJSleepMN;
+
 import com.BismaAlifAlghifariJSleepMN.dbjson.JsonDBEngine;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
