@@ -7,13 +7,17 @@ import com.BismaAlifAlghifariJSleepMN.controller.BasicGetController;
 import com.BismaAlifAlghifariJSleepMN.dbjson.JsonAutowired;
 import com.BismaAlifAlghifariJSleepMN.dbjson.JsonTable;
 import org.springframework.web.bind.annotation.*;
-
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * This class represents an AccountController.
+ *
+ * @author Bisma Alif Alghifari
+ * @version 1.0
+ */
 @RestController
 @RequestMapping("/account")
 public class AccountController implements BasicGetController<Account>
@@ -25,12 +29,18 @@ public class AccountController implements BasicGetController<Account>
 
     public static final Pattern REGEX_PATTERN_EMAIL = Pattern.compile(REGEX_EMAIL);
     public static final Pattern REGEX_PATTERN_PASSWORD = Pattern.compile(REGEX_PASSWORD);
+
     @JsonAutowired(value = Account.class,filepath = "src\\json\\account.json")
     public static JsonTable<Account> accountTable;
 
     @GetMapping
     String index() { return "account page"; }
 
+
+    /**
+     * This method is used to get the account of the renter.
+     * @return The account of the user.
+     */
     @PostMapping("/login")
     Account login(
             @RequestParam String email,
@@ -47,7 +57,13 @@ public class AccountController implements BasicGetController<Account>
         }
     }
 
-
+    /**
+     * This method is used to get the account of a user.
+     * @param email The email for the user.
+     * @param password The password for the user.
+     * @param name The username for the user.
+     * @return The account for the user.
+     */
     @PostMapping("/register")
     Account register(
             @RequestParam String name,
@@ -71,19 +87,17 @@ public class AccountController implements BasicGetController<Account>
             return account;
         } return null;
 
-//        if (!name.isBlank() && matchEmail && matchFoundPassword){
-//            generatedPassword = hashPassword(password);
-//            Account newAccount = new Account(name, email, generatedPassword);
-//            accountTable.add(newAccount);
-//            return newAccount;
-//        } else {
-//            return null;
-//        }
-
-
     }
 
 
+    /**
+     * This method is used to get the account of a user.
+     * @param id The email for the renter.
+     * @param username The password for the renter.
+     * @param phoneNumber The phone number for the renter.
+     * @param address The address for the renter.
+     * @return The account for the renter.
+     */
     @PostMapping("/{id}/registerRenter")
     Renter registerRenter(@PathVariable int id, @RequestParam String username, @RequestParam String address,
                           @RequestParam String phoneNumber ){
@@ -98,6 +112,12 @@ public class AccountController implements BasicGetController<Account>
         }
     }
 
+    /**
+     * This method is used to get the account of a user.
+     * @param id The email for the user.
+     * @param balance The balance for the user.
+     * @return The account for the renter.
+     */
     @PostMapping("/{id}/topUp")
     boolean topUp(@PathVariable int id, @RequestParam double balance ){
         Account account = Algorithm.<Account>find(accountTable, acc -> id == acc.id);

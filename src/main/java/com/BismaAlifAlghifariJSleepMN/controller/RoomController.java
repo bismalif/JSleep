@@ -14,7 +14,7 @@ import java.util.List;
 public class RoomController implements BasicGetController<Room> {
 
 
-    @JsonAutowired(value = Room.class, filepath = "src\\json\\.json")
+    @JsonAutowired(value = Room.class, filepath = "src\\json\\room.json")
     public static JsonTable<Room> roomTable;
 
 
@@ -44,17 +44,24 @@ public class RoomController implements BasicGetController<Room> {
             @RequestParam String address,
             @RequestParam BedType bedType
     ){
-
+        System.out.println("Id: " + accountId);
+        System.out.println("Name: " + name);
+        System.out.println("Size: " + size);
+        System.out.println("facility: " + facility);
+        System.out.println("Address: " + address);
+        System.out.println("Bed: " + bedType);
         Account account = Algorithm.<Account>find(AccountController.accountTable, pred -> pred.id == accountId && pred.renter != null);
+        System.out.println(account);
         if(account == null) return null;
         else{
             Room room = new Room(accountId, name, size, new Price(price), facility, city, address, bedType);
+            System.out.println(room);
             roomTable.add(room);
             return room;
         }
     }
 
-    @GetMapping("/{id}/renter")
+    @GetMapping("/getAllRoom")
     List<Room> getAllRoom(
             @RequestParam int page,
             @RequestParam int pageSize

@@ -6,12 +6,26 @@ import java.util.Calendar;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * This class represents a payment made by a customer.
+ *
+ * @author Bisma Alif Alghifari
+ * @version 1.0
+ */
 public class Payment extends Invoice  {
 
     public Date to;
     public Date from;
     private int roomId;
 
+    /**
+     * This constructor is used to create a new Payment object.
+     * @param buyerId The id of the customer who made the transaction.
+     * @param renterId The id of the hotel that the customer made the transaction with.
+     * @param roomId The id of the room that the customer made the transaction with.
+     * @param from The date when the customer checked in.
+     * @param to The date when the customer checked out.
+     */
     public Payment(int buyerId, int renterId, int roomId, Date
             from, Date to) {
         super(buyerId, renterId);
@@ -21,6 +35,9 @@ public class Payment extends Invoice  {
 
     }
 
+    /**
+     * This method is used to change the status of a payment.
+     */
     public Payment(Account buyer, Renter renter, int roomId, Date
             from, Date to) {
         super(buyer, renter);
@@ -30,6 +47,10 @@ public class Payment extends Invoice  {
     }
 
 
+    /**
+     * This method is used to get the total price of a payment.
+     * @return The total price of a payment.
+     */
     public static boolean availability(Date from,Date to,Room room){
         if (from.equals(to))
             return false;
@@ -50,6 +71,10 @@ public class Payment extends Invoice  {
 
     }
 
+    /**
+     * This method is used to get the total price of a payment.
+     * @return The total price of a payment.
+     */
     public static boolean makeBooking(Date from,Date to,Room room){
         if(to.before(from))
             return false;
@@ -68,6 +93,10 @@ public class Payment extends Invoice  {
 
     }
 
+    /**
+     * This method is used to get the total price of a payment.
+     * @return The total price of a payment.
+     */
     public String print() {
         return  "Id : " + id + " " +
                 "Buyer Id : " + buyerId + " " +
@@ -77,6 +106,10 @@ public class Payment extends Invoice  {
                 "To : " + to + "\n\n";
     }
 
+    /**
+     * This method is used to get the total price of a payment.
+     * @return The total price of a payment.
+     */
     public int getRoomId(){
         return this.roomId;
     }

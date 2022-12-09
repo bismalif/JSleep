@@ -29,7 +29,7 @@ public class Room extends Serializable {
         this.price = price;
         this.facility.addAll(facility);
         this.booked = new ArrayList<Date>();
-        this.bedType = bedType.SINGLE;
+        this.bedType = bedType;
     }
 
     public String toString(){

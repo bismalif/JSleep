@@ -13,18 +13,23 @@ import java.util.List;
  * Modul 2
  */
 
+/**
+ * This class is used to run the application.
+ * @author Bisma Alif Alghifari
+ * @version 1.0
+ * @since 2019-05-14
+ */
 
 @SpringBootApplication
 public class JSleep {
 
 
-//    class Country{
-//        public String name;
-//        public String population;
-//        public List<String> listOfStates;
-//    }
 
     public static void main(String[] args) {
+        JsonDBEngine.Run(JSleep.class);
+        SpringApplication.run(JSleep.class, args);
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> JsonDBEngine.join()));
+
 //        SpringApplication.run(JSleep.class, args);
 //
 //        Account testRegex = new Account("Netlab_", "bisma@gmail.com", "JokiNaufalFaza88");
@@ -44,10 +49,6 @@ public class JSleep {
 //        } catch (Throwable t) {
 //            t.printStackTrace();
 //        }
-        JsonDBEngine.Run(JSleep.class);
-        SpringApplication.run(JSleep.class, args);
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> JsonDBEngine.join()));
-
     }
 
 //    public static Room createRoom(){
@@ -73,4 +74,9 @@ public class JSleep {
 //        return Algorithm.paginate(list, page, pageSize, id -> id.accountId == accountId);
 //    }
 
+//    class Country{
+//        public String name;
+//        public String population;
+//        public List<String> listOfStates;
+//    }
 }

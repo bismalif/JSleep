@@ -2,7 +2,12 @@ package com.BismaAlifAlghifariJSleepMN;
 
 
 import com.BismaAlifAlghifariJSleepMN.dbjson.Serializable;
-
+/**
+ * This class represents a complaint made by a customer about a hotel.
+ *
+ * @author Bisma Alif Alghifari
+ * @version 1.0
+ */
 public class Complaint extends Serializable {
     public String desc;
     public String date;

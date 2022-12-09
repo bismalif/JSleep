@@ -5,8 +5,6 @@ import com.BismaAlifAlghifariJSleepMN.dbjson.JsonAutowired;
 import com.BismaAlifAlghifariJSleepMN.dbjson.JsonTable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,6 +25,7 @@ public class PaymentController implements BasicGetController<Payment> {
     public JsonTable<Payment> getJsonTable() {
         return paymentTable;
     }
+
 
     @PostMapping("/create")
     public Payment create(@RequestParam int buyerId,
@@ -55,6 +54,8 @@ public class PaymentController implements BasicGetController<Payment> {
         }
         return null;
     }
+
+
     @PostMapping("/{id}/accept")
     public boolean accept(@RequestParam int id) {
         Payment payment = Algorithm.<Payment>find(paymentTable, pred -> pred.id == id);
@@ -64,6 +65,8 @@ public class PaymentController implements BasicGetController<Payment> {
         }
         return false;
     }
+
+
     @PostMapping("/{id}/cancel")
     public boolean cancel(@RequestParam int id) {
         Payment payment = Algorithm.<Payment>find(paymentTable, pred -> pred.id == id);
