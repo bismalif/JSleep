@@ -5,6 +5,7 @@ package com.BismaAlifAlghifariJSleepMN;
  *
  * @author Bisma Alif Alghifari
  * @version 1.0
+ * @version 29 September 2022
  */
 public enum Type {
     REBATE, DISCOUNT

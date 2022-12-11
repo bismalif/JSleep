@@ -4,6 +4,7 @@ package com.BismaAlifAlghifariJSleepMN;
  *
  * @author Bisma Alif Alghifari
  * @version 1.0
+ * @since 11 December 2022
  */
 public class ThreadingObject extends Thread{
     public ThreadingObject(String name){

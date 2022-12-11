@@ -36,7 +36,12 @@ public class Payment extends Invoice  {
     }
 
     /**
-     * This method is used to change the status of a payment.
+     * Constructs a new Payment.
+     *
+     * @param buyer The account that makes a booking
+     * @param renter The renter that provides the room
+     * @param from The start date of a booking
+     * @param to The end date of a booking
      */
     public Payment(Account buyer, Renter renter, int roomId, Date
             from, Date to) {
@@ -48,54 +53,60 @@ public class Payment extends Invoice  {
 
 
     /**
-     * This method is used to get the total price of a payment.
-     * @return The total price of a payment.
+     * Checks whether a room is available to be booked within the given date range.
+     *
+     * @param from The start date of the booking
+     * @param to The end date of the booking
+     * @param room The Room to check availability for
+     * @return true if the Room is available within the given date range, false otherwise
      */
+    //Todo : logic for checking availability and booking
     public static boolean availability(Date from,Date to,Room room){
-        if (from.equals(to))
+        if(from.after(to) || from.equals(to)){
             return false;
-
-        if(room.booked.isEmpty()) {
-            return true;
         }
-
         for (Date i : room.booked) {
-            if (from.equals(i) ) {
+            if (from.equals(i)) {
                 return false;
-            } else if(from.before(i) && to.after(i)){
+            } else if(from.before(i)){
+                if(from.before(i) && to.after(i)){
                     return false;
+                }
             }
         }
         return true;
-
-
     }
 
     /**
-     * This method is used to get the total price of a payment.
-     * @return The total price of a payment.
+     * This method checks the availability of a room for a given time period.
+     *
+     * @param from The start date of the booking period
+     * @param to The end date of the booking period
+     * @param room The room to be booked
+     * @return true if the room is available for the given time period, false otherwise
      */
     public static boolean makeBooking(Date from,Date to,Room room){
-        if(to.before(from))
-            return false;
-
-
         if(availability(from, to, room)){
-            while (from.before(to)){
-                room.booked.add(from);
-                Calendar c = Calendar.getInstance();
-                c.setTime(from);
-                c.add(Calendar.DATE, 1);
-                from = c.getTime();
-            }return true;
 
-        }return false;
+            while (from.before(to)){
+                room.booked.add(from); // Assign ke array
+                Calendar tempVar = Calendar.getInstance();
+                tempVar.setTime(from);
+                tempVar.add(Calendar.DATE, 1); //Increment 1
+                from = tempVar.getTime();
+            }
+            return true;
+        }
+        else{
+            return false;
+        }
 
     }
 
     /**
-     * This method is used to get the total price of a payment.
-     * @return The total price of a payment.
+     * This method is used to show the date and description of a complaint.
+     *
+     * @return String of Buyer ID, Renter ID, Room ID, start and end date of booking
      */
     public String print() {
         return  "Id : " + id + " " +
@@ -107,8 +118,9 @@ public class Payment extends Invoice  {
     }
 
     /**
-     * This method is used to get the total price of a payment.
-     * @return The total price of a payment.
+     * A method to get room ID for payment
+     *
+     * @return room ID
      */
     public int getRoomId(){
         return this.roomId;

@@ -34,8 +34,9 @@ public class Renter extends Serializable {
     }
 
     /**
-     * This method is used to get the phone number of the renter.
-     * @return The phone number of the renter.
+     * Validates the renter's username and phone number.
+     *
+     * @return `true` if the username and phone number are valid, `false` otherwise.
      */
     public boolean validate (){
 

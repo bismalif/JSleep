@@ -38,8 +38,10 @@ public class Voucher extends Serializable {
     }
 
     /**
-     * This method is used to get the name of the account.
-     * @return The name of the account.
+     * Checks if the voucher can be applied to the specified price.
+     *
+     * @param price  The price to check against the voucher's minimum price and usage status.
+     * @return `true` if the voucher can be applied, `false` otherwise.
      */
     public boolean canApply(Price price){
         if((price.price > minimum) && (!this.used)){
@@ -48,8 +50,10 @@ public class Voucher extends Serializable {
     }
 
     /**
-     * This method is used to get the name of the account.
-     * @return The name of the account.
+     * Applies the voucher to the specified price.
+     *
+     * @param price  The price to apply the voucher to.
+     * @return  The reduced price after the voucher has been applied.
      */
     public double apply(Price price){
         used = true;
@@ -65,8 +69,9 @@ public class Voucher extends Serializable {
     }
 
     /**
-     * This method is used to get the name of the account.
-     * @return The name of the account.
+     * Checks if the voucher has been used.
+     *
+     * @return `true` if the voucher has been used, `false` otherwise.
      */
     public boolean isUsed(){
         return used = true;

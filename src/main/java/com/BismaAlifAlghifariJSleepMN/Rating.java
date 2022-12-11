@@ -5,10 +5,18 @@ package com.BismaAlifAlghifariJSleepMN;
  *
  * @author Bisma Alif Alghifari
  * @version 1.0
+ * @since   2022-12-11
  */
 public class Rating
 {
+    /**
+     *  The total rating from the users.
+     */
     private long total;
+
+    /**
+     *  The number of how many users make ratings.
+     */
     private long count;
 
     /**

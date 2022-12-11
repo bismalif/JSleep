@@ -22,14 +22,27 @@ import java.util.regex.Pattern;
 @RequestMapping("/account")
 public class AccountController implements BasicGetController<Account>
 {
-
+    /**
+     * Regex for the password. Password should be at least 8 characters long
+     * and contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and no whitespace
+     */
     public static final String REGEX_EMAIL = "^[a-zA-Z0-9]+@[a-zA-Z.]+\\.[a-zA-Z]+?$";
-
+    /**
+     * Regex for the email. Email should be in the format of
+     * in the format of local@domain, example : amandio@ui.ac.id
+     * local only contains alphanumeric characters and can't contain
+     * any special characters or whitespace. domain can't contain any number
+     */
     public static final String REGEX_PASSWORD = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$";
 
+    /**
+     * Pattern for password and Email REGEX
+     */
     public static final Pattern REGEX_PATTERN_EMAIL = Pattern.compile(REGEX_EMAIL);
     public static final Pattern REGEX_PATTERN_PASSWORD = Pattern.compile(REGEX_PASSWORD);
-
+    /**
+     * The table of accounts.
+     */
     @JsonAutowired(value = Account.class,filepath = "src\\json\\account.json")
     public static JsonTable<Account> accountTable;
 
@@ -38,8 +51,12 @@ public class AccountController implements BasicGetController<Account>
 
 
     /**
-     * This method is used to get the account of the renter.
-     * @return The account of the user.
+     * This method is used to handle /account/login requests from the client.
+     * @param email The email of the account.
+     * @param password The password of the account.
+     * @return The account that has the same email and password as the parameter.
+     *         If the account doesn't exist, it will return null.
+     * @author Bisma Alif Alghifari
      */
     @PostMapping("/login")
     Account login(
@@ -58,11 +75,12 @@ public class AccountController implements BasicGetController<Account>
     }
 
     /**
-     * This method is used to get the account of a user.
-     * @param email The email for the user.
-     * @param password The password for the user.
-     * @param name The username for the user.
-     * @return The account for the user.
+     * Register a new account to the system using the name, email and password.
+     *
+     * @param name The name the user wants to register.
+     * @param email The email of the account.
+     * @param password The password of the account.
+     * @return The created `Account` object if the registration is successful, or `null` otherwise.
      */
     @PostMapping("/register")
     Account register(
@@ -91,12 +109,13 @@ public class AccountController implements BasicGetController<Account>
 
 
     /**
-     * This method is used to get the account of a user.
-     * @param id The email for the renter.
-     * @param username The password for the renter.
-     * @param phoneNumber The phone number for the renter.
-     * @param address The address for the renter.
-     * @return The account for the renter.
+     * Registers a new renter for the specified account.
+     *
+     *  @param id The ID of the account.
+     *  @param username The username of the renter.
+     *  @param address The address of the renter.
+     *  @param phoneNumber The phone number of the renter.
+     *  @return The created `Renter` object if the registration is successful, or `null` otherwise.
      */
     @PostMapping("/{id}/registerRenter")
     Renter registerRenter(@PathVariable int id, @RequestParam String username, @RequestParam String address,
@@ -114,9 +133,10 @@ public class AccountController implements BasicGetController<Account>
 
     /**
      * This method is used to get the account of a user.
-     * @param id The email for the user.
-     * @param balance The balance for the user.
-     * @return The account for the renter.
+     * @param id The id of the account that will be topped up.
+     * @param balance The amount of money that will be topped up.
+     * @return true if the account has been topped up and false if the account doesn't exist.
+     * @author Bisma Alif Alghifari
      */
     @PostMapping("/{id}/topUp")
     boolean topUp(@PathVariable int id, @RequestParam double balance ){
@@ -129,6 +149,12 @@ public class AccountController implements BasicGetController<Account>
         }
     }
 
+    /**
+     * Hashes the provided password using the MD5 algorithm.
+     *
+     * @param password The password to hash.
+     * @return The hashed password.
+     */
     String hashPassword(String password){
         String generatedPassword = null;
         try{
@@ -146,6 +172,12 @@ public class AccountController implements BasicGetController<Account>
         return generatedPassword;
     }
 
+
+    /**
+     * Returns the `JsonTable` object that stores the accounts.
+     *
+     * @return The `JsonTable` object that stores the accounts.
+     */
     @Override
     public JsonTable<Account> getJsonTable() {
         return accountTable;

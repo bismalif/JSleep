@@ -1,8 +1,9 @@
 package com.BismaAlifAlghifariJSleepMN;
 
 /**
- * This enum represents the different types of beds that a hotel room can have.
+ * This class represents a price for a product or service.
  *
+ * <p>The price can have a discount applied to it, and a rebate can be provided as well.</p>
  * @author Bisma Alif Alghifari
  * @version 1.0
  */
@@ -23,8 +24,10 @@ public class Price {
     }
 
     /**
-     * This method is used to get the price of a room.
-     * @return The price of a room.
+     * Constructs a new Price instance with the given base price and discount.
+     *
+     * @param price The base price of the room
+     * @param discount The discount that will be applied to the original price
      */
     public Price(double price, double discount) {
         this.price = price;

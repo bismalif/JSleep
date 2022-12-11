@@ -10,7 +10,8 @@ import java.util.Date;
  * of a transaction.
  * @author Bisma Alif Alghifari
  * @version 1.0
- * @since 2019-05-14
+ * @since 27-09-2022
+ * @see Serializable
  */
 public class Invoice extends Serializable {
     public int buyerId;
@@ -38,9 +39,10 @@ public class Invoice extends Serializable {
     }
 
     /**
-     * This constructor is used to create a new Invoice object.
-     * @param buyerId The id of the customer who made the transaction.
-     * @param renterId The id of the hotel that the customer made the transaction with.
+     * Constructs a new Invoice.
+     *
+     * @param buyerId The account that makes a booking
+     * @param renterId The renter that provides the room
      */
     protected Invoice(int buyerId, int renterId){
         this.rating = RoomRating.NONE;
@@ -50,7 +52,10 @@ public class Invoice extends Serializable {
 
     }
     /**
-     * This method is used to change the status of a payment.
+     * Constructs a new Invoice.
+     *
+     * @param buyer The account that makes a booking
+     * @param renter The renter that provides the room
      */
     public Invoice(Account buyer, Renter renter) {
         this.rating = RoomRating.NONE;
@@ -60,8 +65,10 @@ public class Invoice extends Serializable {
 
     }
 
-    /*
-     * This method is used to change the status of a payment.
+    /**
+     * This method is used to show the date and description of a complaint.
+     *
+     * @return String of Invoice ID, Buyer ID, Renter ID, Payment Status, and Rating
      */
     public String print(){
         return  "Id : " + this.id + " " +

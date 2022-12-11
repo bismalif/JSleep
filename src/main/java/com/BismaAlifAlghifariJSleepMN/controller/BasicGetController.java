@@ -15,8 +15,10 @@ import java.util.List;
 @RestController
 public interface BasicGetController <T extends Serializable> {
     /**
-     * This method is used to get the json table.
-     * @return The json table.
+     * Returns the object with the specified ID.
+     *
+     * @param id The ID of the object to return.
+     * @return The object with the specified ID, or `null` if no such object exists.
      */
     @GetMapping("/{id}")
     public default T getById(
@@ -33,8 +35,12 @@ public interface BasicGetController <T extends Serializable> {
     public abstract JsonTable<T> getJsonTable();
 
     /**
-     * This method is used to get all the objects.
-     * @return The list of objects.
+     * Returns a page of objects from the `JsonTable` object, starting from the specified page and with the specified
+     * number of objects per page.
+     *
+     * @param page The index of the page to return.
+     * @param pageSize The number of objects to return per page.
+     * @return A list of objects from the `JsonTable` object.
      */
     @GetMapping("/page")
     public default List<T> getPage(

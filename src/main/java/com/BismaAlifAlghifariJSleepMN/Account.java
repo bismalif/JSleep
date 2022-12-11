@@ -4,6 +4,13 @@ import com.BismaAlifAlghifariJSleepMN.dbjson.Serializable;
 
 import java.util.regex.*;
 
+/**
+ * This class represents an account for a user of the hotel booking system.
+ *
+ * @author Bisma Alif Alghifari
+ * @version 1.0
+ * @since 27 September 2022
+ */
 public class Account extends Serializable {
 
     public double balance;
@@ -11,6 +18,9 @@ public class Account extends Serializable {
     public String name;
     public String email;
     public String password;
+    /**
+     * A regular expression that matches a valid email address and valid password.
+     */
     public static final String REGEX_EMAIL = "^[a-zA-Z0-9]+@[a-zA-Z.]+\\.[a-zA-Z]+?$";
     public static final String REGEX_PASSWORD = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$";
 
